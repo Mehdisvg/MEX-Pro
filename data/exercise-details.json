@@ -1,0 +1,534 @@
+﻿{
+  "version": 1,
+  "count": 46,
+  "exercises": [
+    {
+      "name": "Barbell Bench Press",
+      "slug": "barbell-bench-press",
+      "muscle": "Göğüs, ön omuz, triceps",
+      "steps": [
+        "Düz bankta uzan, ayaklar yerde sabit.",
+        "Kürek kemiklerini birleştir, göğsü hafif kubbe yap.",
+        "Bar omuz genişliginden biraz geniş, bilekler Düz.",
+        "Kontrollü indir — göğse 2 sn, dirsekler 45 derece.",
+        "Patlayıcı it, nefes ver; tepeye gelince göğsü sık.",
+        "Asiri agirlikte spotter veya güvenlik kolu kullan."
+      ],
+      "gif": "assets/exercises/barbell-bench-press.gif"
+    },
+    {
+      "name": "Incline Dumbbell Press",
+      "slug": "incline-dumbbell-press",
+      "muscle": "üst göğüs, ön omuz",
+      "steps": [
+        "Bank 30-45 derece, sırt tam dayali.",
+        "Dumbbelllar omuz hizasinda, dirsekler 45 derece.",
+        "Kontrollü indir, üst gogüste gerilme hisset.",
+        "yukarı it, tepe noktasinda 1 sn sık.",
+        "MomenTüm kullanma; omuz yerine gogus çalışsın."
+      ],
+      "gif": "assets/exercises/incline-dumbbell-press.gif"
+    },
+    {
+      "name": "Lat Pulldown",
+      "slug": "lat-pulldown",
+      "muscle": "Lat, biceps",
+      "steps": [
+        "geniş tutuş, uyluklar pede sabit.",
+        "göğsü hafif geri yasla, gerginlik sırtte.",
+        "Bar göğse dogru cek, dirsekler aşağı.",
+        "Kürek kemiklerini aşağı-çekiye sık.",
+        "Kontrollü yukarı birak — tam germe."
+      ],
+      "gif": "assets/exercises/lat-pulldown.gif"
+    },
+    {
+      "name": "Barbell Row",
+      "slug": "barbell-row",
+      "muscle": "Orta sırt, biceps",
+      "steps": [
+        "Ayaklar omuz genişligi, hafif diz bükümü.",
+        "Govde neredeyse yere paralel, sırt Düz.",
+        "Bar karnın altina dogru cek.",
+        "Kürekleri sık, 1 sn tut.",
+        "Kontrollü indir; beli yuvarlama."
+      ],
+      "gif": "assets/exercises/barbell-row.gif"
+    },
+    {
+      "name": "Overhead Press",
+      "slug": "overhead-press",
+      "muscle": "On ve yan omuz, triceps",
+      "steps": [
+        "Ayaklar omuz genişligi, core sık.",
+        "Bar klavikula hizasinda, dirsekler onde.",
+        "Başın üstune dogru it — baş önden gecmesin.",
+        "Tepe noktasinda kilitlerken omuzlari sık.",
+        "Omuz ağrısı varsa ağırlığı dusur veya makine kullan."
+      ],
+      "gif": "assets/exercises/overhead-press.gif"
+    },
+    {
+      "name": "Lateral Raise",
+      "slug": "lateral-raise",
+      "muscle": "Yan omuz (medial delt)",
+      "steps": [
+        "Hafif agirlik, avuç içleri vücuda bakmasin.",
+        "Kollar yanlara kalca hizasina kadar kaldir.",
+        "Tepe noktasinda 1 sn tut, Kontrollü indir.",
+        "MomenTüm ve sallanma yok.",
+        "Omuz ağrın varsa 12-15 tekrar, cok agir degil."
+      ],
+      "gif": "assets/exercises/lateral-raise.gif"
+    },
+    {
+      "name": "Barbell Curl",
+      "slug": "barbell-curl",
+      "muscle": "Biceps",
+      "steps": [
+        "Ayakta veya duvar arkasina sırt dayali.",
+        "Dirsekler vücuda sabit, sadece on kol hareket eder.",
+        "Kontrollü kaldir, tepe noktasinda sık.",
+        "3 sn iniş — eksantrik onemli.",
+        "Belden hareket etme."
+      ],
+      "gif": "assets/exercises/barbell-curl.gif"
+    },
+    {
+      "name": "Tricep Rope Pushdown",
+      "slug": "tricep-rope-pushdown",
+      "muscle": "Triceps",
+      "steps": [
+        "Dirsekler govdeye yapışık, sabit kalir.",
+        "aşağı it, halati iki yana ac.",
+        "Tam uzat, tricepsi 1 sn sık.",
+        "Kontrollü yukarı — dirsek 90 dereceye kadar."
+      ],
+      "gif": "assets/exercises/tricep-rope-pushdown.gif"
+    },
+    {
+      "name": "Back Squat",
+      "slug": "back-squat",
+      "muscle": "Quadriceps, kalça, core",
+      "steps": [
+        "Bar üst sırtte, ayaklar omuz genişligi veya biraz geniş.",
+        "Nefes al, core ve sırt sık, kalca geriye.",
+        "Dizler ayak yonunde, paralel veya altina in.",
+        "Topuklardan iterek kalk, dizleri dışarı itme.",
+        "Her hafta max 2.5-5 kg artis — form once."
+      ],
+      "gif": "assets/exercises/back-squat.gif"
+    },
+    {
+      "name": "Romanian Deadlift",
+      "slug": "romanian-deadlift",
+      "muscle": "Hamstring, kalça",
+      "steps": [
+        "Bar onde, ayaklar kalca genişligi.",
+        "Hafif diz bükümü sabit, kalca geriye.",
+        "Bar bacak boyunca kayar, sırt Düz.",
+        "Hamstring gerilmesinde dur.",
+        "Kalca one iterek kalk, glute sık."
+      ],
+      "gif": "assets/exercises/romanian-deadlift.gif"
+    },
+    {
+      "name": "Leg Press",
+      "slug": "leg-press",
+      "muscle": "Quadriceps, kalça",
+      "steps": [
+        "Ayaklar platformda, sırt sandalyeye yapışmış.",
+        "Dizler 90 dereceye kadar Kontrollü in.",
+        "Itis — dizleri tam kilitlemeden.",
+        "Ayak yuksek = glute, alçak = quad odak."
+      ],
+      "gif": "assets/exercises/leg-press.gif"
+    },
+    {
+      "name": "Leg Curl",
+      "slug": "leg-curl",
+      "muscle": "Hamstring",
+      "steps": [
+        "Yuzüstu veya oturarak makineye otur.",
+        "Topuklari kalca dogru cek, tepe noktasinda sık.",
+        "Kontrollü indir, kalca platformdan kalkmasin."
+      ],
+      "gif": "assets/exercises/leg-curl.gif"
+    },
+    {
+      "name": "Hip Thrüst",
+      "slug": "hip-thrüst",
+      "muscle": "Glute",
+      "steps": [
+        "sırt bank kenarinda, bar kalca uzerinde.",
+        "Kok kalca ile yukarı it, tepe noktasinda glute sık.",
+        "2 sn tut, Kontrollü indir.",
+        "Çene göğse degmesin — sadece kalca hareket eder."
+      ],
+      "gif": "assets/exercises/hip-thrüst.gif"
+    },
+    {
+      "name": "Plank",
+      "slug": "plank",
+      "muscle": "Tüm karin, core",
+      "steps": [
+        "Dirsekler omuz altinda.",
+        "vücut Düz cizgi — kalca ne yukarı ne aşağı.",
+        "Karın, glute, quad ayni anda sık.",
+        "Nefes tutma, Düzenli nefes al."
+      ],
+      "gif": "assets/exercises/plank.gif"
+    },
+    {
+      "name": "Deadlift",
+      "slug": "deadlift",
+      "muscle": "sırt, hamstring, glute",
+      "steps": [
+        "Ayaklar kalca genişligi, bar ayak üstunde.",
+        "Gogus yukarı, sırt notr, core sık.",
+        "Bar bacak boyunca yukarı — once bacaklar sonra kalca.",
+        "Tepe noktasinda omuzlar geride, asiri yaslanma yok.",
+        "Agir deadlift öncesi isinma setleri sart."
+      ],
+      "gif": "assets/exercises/deadlift.gif"
+    },
+    {
+      "name": "Pull-Up",
+      "slug": "pull-up",
+      "muscle": "Lat, biceps",
+      "steps": [
+        "geniş veya supine tutuş hedefine gore.",
+        "Çene bar üstune, Kürek aşağı-çekiye.",
+        "Kontrollü in — tam kol uzaması.",
+        "Gerekirse band veya makine destekli."
+      ],
+      "gif": "assets/exercises/pull-up.gif"
+    },
+    {
+      "name": "Face Pull",
+      "slug": "face-pull",
+      "muscle": "Arka omuz, rotator",
+      "steps": [
+        "Halat goz hizasinda.",
+        "Yuz tarafina cek, dirsekler acik.",
+        "Arka omuzu 2 sn sık — omuz sagligi icin sart.",
+        "Her antrenman öncesi hafif set yapilabilir."
+      ],
+      "gif": "assets/exercises/face-pull.gif"
+    },
+    {
+      "name": "Hammer Curl",
+      "slug": "hammer-curl",
+      "muscle": "Biceps, brachialis",
+      "steps": [
+        "Notr tutuş, basparmak yukarı.",
+        "Dirsek sabit, Kontrollü kaldir.",
+        "Tepe noktasinda sık, yavas indir."
+      ],
+      "gif": "assets/exercises/hammer-curl.gif"
+    },
+    {
+      "name": "Cable Fly",
+      "slug": "cable-fly",
+      "muscle": "Göğüs (izole)",
+      "steps": [
+        "Kollar hafif bukuk, gogus hizasinda.",
+        "On kol sabit, gogus kasiyla birleştir.",
+        "Tepe noktasinda 1 sn sık, Kontrollü ac."
+      ],
+      "gif": "assets/exercises/cable-fly.gif"
+    },
+    {
+      "name": "Machine Chest Press",
+      "slug": "machine-chest-press",
+      "muscle": "Göğüs, triceps",
+      "steps": [
+        "Oturak ve kol gogus hizasinda.",
+        "sırt makineye tam dayali.",
+        "Kontrollü it ve cek, tam kilitleme sart degil."
+      ],
+      "gif": "assets/exercises/machine-chest-press.gif"
+    },
+    {
+      "name": "Seated Cable Row",
+      "slug": "seated-cable-row",
+      "muscle": "Orta sırt",
+      "steps": [
+        "Ayaklar pedde, govde dik veya hafif one.",
+        "Tutamagi karna dogru cek, Kürek sık.",
+        "1 sn tut, Kontrollü uzat."
+      ],
+      "gif": "assets/exercises/seated-cable-row.gif"
+    },
+    {
+      "name": "Dumbbell Shoulder Press",
+      "slug": "dumbbell-shoulder-press",
+      "muscle": "Omuz, triceps",
+      "steps": [
+        "Oturarak sırt dayali veya ayakta core sık.",
+        "Dumbbelllar kulak hizasindan yukarı.",
+        "Omuz ağrısında ROM kisalt."
+      ],
+      "gif": "assets/exercises/dumbbell-shoulder-press.gif"
+    },
+    {
+      "name": "Bulgarian Split Squat",
+      "slug": "bulgarian-split-squat",
+      "muscle": "Quad, glute",
+      "steps": [
+        "Arka ayak bankta, on ayak onde.",
+        "Diz on ayak orta hizasinda, govde dik.",
+        "aşağı in, on bacakla it.",
+        "Denge icin hafif agirlikle basla."
+      ],
+      "gif": "assets/exercises/bulgarian-split-squat.gif"
+    },
+    {
+      "name": "Leg Extension",
+      "slug": "leg-extension",
+      "muscle": "Quadriceps",
+      "steps": [
+        "sırt sandalyeye yapışmış, dizi eksende.",
+        "Kontrollü kaldir, tepe noktasinda 2 sn sık.",
+        "Yavas indir — hamle yok."
+      ],
+      "gif": "assets/exercises/leg-extension.gif"
+    },
+    {
+      "name": "Standing Calf Raise",
+      "slug": "standing-calf-raise",
+      "muscle": "Gastrocnemius",
+      "steps": [
+        "Parmak uclari platformda, topuk serbest.",
+        "aşağı in — germe hissi.",
+        "yukarı kalk, 2 sn tepe sıkimi.",
+        "3 sn yavas iniş."
+      ],
+      "gif": "assets/exercises/standing-calf-raise.gif"
+    },
+    {
+      "name": "Cable Crunch",
+      "slug": "cable-crunch",
+      "muscle": "üst karin",
+      "steps": [
+        "Diz üstu, halat bas üstu.",
+        "Kalca sabit, gogusu dize dogru buk.",
+        "Alt karni sık, Kontrollü ac."
+      ],
+      "gif": "assets/exercises/cable-crunch.gif"
+    },
+    {
+      "name": "Barbell Squat",
+      "slug": "barbell-squat",
+      "muscle": "Quad, glute",
+      "steps": [
+        "Back squat ile ayni form kurallari.",
+        "Derinlik ve nefes bracing onemli."
+      ],
+      "gif": "assets/exercises/barbell-squat.gif"
+    },
+    {
+      "name": "T-Bar Row",
+      "slug": "t-bar-row",
+      "muscle": "Orta sırt",
+      "steps": [
+        "Gogus pede veya serbest, sırt Düz.",
+        "Bar göğse yakin cek, Kürek sık.",
+        "Kontrollü negatif."
+      ],
+      "gif": "assets/exercises/t-bar-row.gif"
+    },
+    {
+      "name": "Skull Crusher",
+      "slug": "skull-crusher",
+      "muscle": "Triceps (uzun bas)",
+      "steps": [
+        "Benchte, kol bas üstu uzanmis.",
+        "Dirsek sabit, on kolu aşağı buk.",
+        "Tricepsi germe ve sıkma odakli."
+      ],
+      "gif": "assets/exercises/skull-crusher.gif"
+    },
+    {
+      "name": "Close-Grip Bench",
+      "slug": "close-grip-bench",
+      "muscle": "Triceps, göğüs",
+      "steps": [
+        "Bench tutuşu omuz genişligi veya dar.",
+        "Dirsekler vücuda yakin.",
+        "Gogus ve triceps birlikte calisir."
+      ],
+      "gif": "assets/exercises/close-grip-bench.gif"
+    },
+    {
+      "name": "Front Squat",
+      "slug": "front-squat",
+      "muscle": "Quad, core",
+      "steps": [
+        "Bar ön deltlerde, dirsekler yukarı.",
+        "Dik govde, core cok aktif.",
+        "Derin squat quad odakli."
+      ],
+      "gif": "assets/exercises/front-squat.gif"
+    },
+    {
+      "name": "Walking Lunge",
+      "slug": "walking-lunge",
+      "muscle": "Quad, glute",
+      "steps": [
+        "Adim at, arka diz yere yakin in.",
+        "Govde dik, on diz ayak ortasinda.",
+        "Alternatif bacak, Kontrollü tempo."
+      ],
+      "gif": "assets/exercises/walking-lunge.gif"
+    },
+    {
+      "name": "Good Morning",
+      "slug": "good-morning",
+      "muscle": "Hamstring, alt sırt",
+      "steps": [
+        "Bar üst sırtte, hafif diz bükümü.",
+        "Kalca geriye, sırt Düz.",
+        "Hafif agirlik — form kritik."
+      ],
+      "gif": "assets/exercises/good-morning.gif"
+    },
+    {
+      "name": "Preacher Curl",
+      "slug": "preacher-curl",
+      "muscle": "Biceps (izole)",
+      "steps": [
+        "Kol padde tam, dirsek sabit.",
+        "Tam ROM, tepe sıkimi.",
+        "Cheating yapma."
+      ],
+      "gif": "assets/exercises/preacher-curl.gif"
+    },
+    {
+      "name": "Rope Pushdown",
+      "slug": "rope-pushdown",
+      "muscle": "Triceps",
+      "steps": [
+        "Tricep Rope Pushdown ile ayni teknik."
+      ],
+      "gif": "assets/exercises/rope-pushdown.gif"
+    },
+    {
+      "name": "Goblet Squat",
+      "slug": "goblet-squat",
+      "muscle": "Quad, core",
+      "steps": [
+        "Dumbbell gogus hizasinda.",
+        "Dik squat, dirsekler ic bacaklar arasi.",
+        "Derinlik Kontrollü."
+      ],
+      "gif": "assets/exercises/goblet-squat.gif"
+    },
+    {
+      "name": "Dips",
+      "slug": "dips",
+      "muscle": "Triceps, alt göğüs",
+      "steps": [
+        "Govde hafif one — triceps odak.",
+        "aşağı in dirsek 90 derece, yukarı it.",
+        "Omuz ağrısında dikkat."
+      ],
+      "gif": "assets/exercises/dips.gif"
+    },
+    {
+      "name": "Chin-Up",
+      "slug": "chin-up",
+      "muscle": "Lat, biceps",
+      "steps": [
+        "Supine tutuş, Çene bar üstu.",
+        "Kontrollü negatif onemli."
+      ],
+      "gif": "assets/exercises/chin-up.gif"
+    },
+    {
+      "name": "Pendlay Row",
+      "slug": "pendlay-row",
+      "muscle": "sırt, core",
+      "steps": [
+        "Her tekrar yerden baslar.",
+        "sırt yere paralel, Patlayıcı cek.",
+        "CrossFit tarzi guc odakli."
+      ],
+      "gif": "assets/exercises/pendlay-row.gif"
+    },
+    {
+      "name": "Arnold Press",
+      "slug": "arnold-press",
+      "muscle": "Omuz (Tüm baslar)",
+      "steps": [
+        "Rotasyonlu press — on omuz vurgusu.",
+        "Kontrollü tempo, omuz mobilitesi gerekir."
+      ],
+      "gif": "assets/exercises/arnold-press.gif"
+    },
+    {
+      "name": "Cable Lateral Raise",
+      "slug": "cable-lateral-raise",
+      "muscle": "Yan omuz",
+      "steps": [
+        "Sabit gerginlik, tepe sıkimi.",
+        "Hafif agirlik yuksek tekrar."
+      ],
+      "gif": "assets/exercises/cable-lateral-raise.gif"
+    },
+    {
+      "name": "Push-Up",
+      "slug": "push-up",
+      "muscle": "Göğüs, triceps, core",
+      "steps": [
+        "Plank pozisyonu, eller omuz altı.",
+        "Vucudu Düz tut, core sık.",
+        "Goguse inene kadar in, Patlayıcı kaldir."
+      ],
+      "gif": "assets/exercises/push-up.gif"
+    },
+    {
+      "name": "Farmer Walk",
+      "slug": "farmer-walk",
+      "muscle": "Trapez, core, tutuş",
+      "steps": [
+        "Agirlik her elde, omuzlar geride.",
+        "Kisa adimlar, dik yuru.",
+        "Mesafe veya sure hedefle."
+      ],
+      "gif": "assets/exercises/farmer-walk.gif"
+    },
+    {
+      "name": "Band External Rotation",
+      "slug": "band-external-rotation",
+      "muscle": "Rotator cuff, omuz sagligi",
+      "steps": [
+        "Dirsek 90 derece govdeye yapışık.",
+        "Disa dogru dondur, 2 sn tut.",
+        "Omuz ağrısı icin her gun hafif."
+      ],
+      "gif": "assets/exercises/band-external-rotation.gif"
+    },
+    {
+      "name": "Mountain Climber",
+      "slug": "mountain-climber",
+      "muscle": "Core, kardiyo",
+      "steps": [
+        "Plank, dizleri goguse dogru hizli.",
+        "Kalca cok yukarı kalmasin."
+      ],
+      "gif": "assets/exercises/mountain-climber.gif"
+    },
+    {
+      "name": "Burpee",
+      "slug": "burpee",
+      "muscle": "Tüm vücut, kardiyo",
+      "steps": [
+        "Cömel, plank, şınav (opsiyonel).",
+        "Ayaga sıçrama — nefes kontrolü."
+      ],
+      "gif": "assets/exercises/burpee.gif"
+    }
+  ]
+}
+

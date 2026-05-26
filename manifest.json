@@ -1,0 +1,37 @@
+{
+  "name": "MEX Pro",
+  "short_name": "MEX Pro",
+  "description": "Antrenman, beslenme ve ilerleme takibi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0b0f",
+  "theme_color": "#0b0b0f",
+  "orientation": "portrait",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%230d1b2e' width='192' height='192' rx='40'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-size='72' fill='%2347b8ff' font-family='sans-serif' font-weight='bold'%3EM%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Antrenman",
+      "url": "/?screen=workout",
+      "description": "Bugünkü antrenman"
+    },
+    {
+      "name": "Beslenme",
+      "url": "/?screen=nutrition",
+      "description": "Makro ve öğün"
+    },
+    {
+      "name": "Su",
+      "url": "/?screen=water",
+      "description": "Su takibi"
+    }
+  ],
+  "categories": ["health", "fitness"]
+}

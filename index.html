@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#0b0b0f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <title>MEX Pro</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="theme-pro.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-top">
+        <div class="logo">MEX <span>Pro</span></div>
+        <div class="week-badge">Hafta <span id="homeCurrentWeek">1</span></div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center; justify-content: flex-end">
+        <span id="authUserBadge" class="day-chip" style="display: none"></span>
+        <button id="authLogoutBtn" class="day-chip" style="display: none">Çıkış</button>
+      </div>
+    </header>
+
+    <!-- Auth gate (mex-auth.js) -->
+    <div class="auth-gate" id="authGate">
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button type="button" class="auth-tab active" data-auth-tab="login">Giriş</button>
+          <button type="button" class="auth-tab" data-auth-tab="register">Üyelik</button>
+        </div>
+        <div class="auth-error" id="authError" style="display: none"></div>
+
+        <form id="authLoginForm">
+          <input class="pr-input" name="email" type="email" placeholder="E-posta" style="width: 100%; margin-bottom: 8px" />
+          <input
+            class="pr-input"
+            name="password"
+            type="password"
+            placeholder="Şifre"
+            style="width: 100%; margin-bottom: 12px"
+          />
+          <button type="submit" class="start-btn" style="margin: 0">GİRİŞ</button>
+        </form>
+
+        <form id="authRegisterForm" style="display: none">
+          <input class="pr-input" name="name" placeholder="Ad" style="width: 100%; margin-bottom: 8px" />
+          <input class="pr-input" name="email" type="email" placeholder="E-posta" style="width: 100%; margin-bottom: 8px" />
+          <input
+            class="pr-input"
+            name="password"
+            type="password"
+            placeholder="Şifre (min 6)"
+            style="width: 100%; margin-bottom: 12px"
+          />
+          <button type="submit" class="start-btn" style="margin: 0">KAYIT OL</button>
+        </form>
+
+        <div style="margin-top: 12px">
+          <div id="googleSignInWrap"></div>
+          <button type="button" id="authGuestBtn" class="day-chip" style="width: 100%; margin-top: 10px">
+            Misafir devam et
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screens -->
+    <main>
+      <section class="screen" id="screen-home">
+        <p class="home-date" id="homeDateLabel">Bugün</p>
+
+        <div class="today-hero-card push" id="homeTodayCard" role="button" tabindex="0">
+          <div class="today-hero-label">Bugünkü antrenman</div>
+          <div class="today-hero-title" id="homeTodayTitle">Push</div>
+          <div class="today-hero-sub" id="homeTodaySub">Göğüs · Omuz · Triceps</div>
+          <button type="button" class="today-hero-cta" id="homeStartBtn">Antrenmana başla</button>
+        </div>
+
+        <div class="home-stats-row">
+          <div class="home-stat-pill">
+            <div class="home-stat-val accent" id="homeCompletedWorkouts">0</div>
+            <div class="home-stat-lbl">Antrenman</div>
+          </div>
+          <div class="home-stat-pill">
+            <div class="home-stat-val accent" id="homeStreak">0</div>
+            <div class="home-stat-lbl">Gün seri</div>
+          </div>
+          <div class="home-stat-pill">
+            <div class="home-stat-val pr" id="homePRCount">0</div>
+            <div class="home-stat-lbl">PR</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 4px; padding: 14px 16px">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <span style="font-size: 13px; color: var(--text2)">Bugünkü setler</span>
+            <span style="font-size: 15px; font-weight: 600; color: var(--accent)" id="homeTotalSets">0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-workout">
+        <div class="day-selector" id="daySelector">
+          <button type="button" class="day-chip active">Push</button>
+          <button type="button" class="day-chip">Pull</button>
+          <button type="button" class="day-chip">Legs</button>
+          <button type="button" class="day-chip">Upper</button>
+          <button type="button" class="day-chip">Rest</button>
+        </div>
+        <div id="workoutContent"></div>
+      </section>
+
+      <section class="screen" id="screen-programs">
+        <div class="pro-screen-title">PROGRAM & ANTRENMAN</div>
+        <p class="pro-screen-sub">Hazır planlar, kendi programını oluştur veya 300+ hareketten seç.</p>
+
+        <div class="pro-tabs" id="programMainTabs">
+          <button type="button" class="pro-tab active" data-prog-tab="ready">Hazır Programlar</button>
+          <button type="button" class="pro-tab" data-prog-tab="builder">Oluştur</button>
+          <button type="button" class="pro-tab" data-prog-tab="library">Hareketler</button>
+        </div>
+
+        <div class="pro-panel active" id="progPanel-ready">
+          <div class="day-selector" id="programDiffFilters">
+            <button type="button" class="day-chip active">Tümü</button>
+            <button type="button" class="day-chip">Orta</button>
+            <button type="button" class="day-chip">Zor</button>
+          </div>
+          <div class="programs-content-wrap" id="programsContent">
+            <!-- Programlar app.js'deki programData sırasına göre index.html'de statik olarak durur -->
+            <div class="exercise-card">
+              <div class="exercise-header">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <span style="font-size: 24px">🔄</span>
+                  <div>
+                    <div class="exercise-name">PPL — Push Pull Legs</div>
+                    <div style="font-size: 11px; color: var(--text3)">5 GÜN • ORTA</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="exercise-card">
+              <div class="exercise-header">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <span style="font-size: 24px">⚡</span>
+                  <div>
+                    <div class="exercise-name">Upper / Lower Split</div>
+                    <div style="font-size: 11px; color: var(--text3)">4 GÜN • ORTA</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="exercise-card">
+              <div class="exercise-header">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <span style="font-size: 24px">🌍</span>
+                  <div>
+                    <div class="exercise-name">Full Body — 3 Gün</div>
+                    <div style="font-size: 11px; color: var(--text3)">3 GÜN • ORTA</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="exercise-card">
+              <div class="exercise-header">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <span style="font-size: 24px">💀</span>
+                  <div>
+                    <div class="exercise-name">Arnold Split</div>
+                    <div style="font-size: 11px; color: var(--text3)">6 GÜN • ZOR</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="exercise-card">
+              <div class="exercise-header">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <span style="font-size: 24px">💪</span>
+                  <div>
+                    <div class="exercise-name">Powerbuilding</div>
+                    <div style="font-size: 11px; color: var(--text3)">5 GÜN • ZOR</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="exercise-card">
+              <div class="exercise-header">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <span style="font-size: 24px">🔥</span>
+                  <div>
+                    <div class="exercise-name">GVT — Alman Hacim</div>
+                    <div style="font-size: 11px; color: var(--text3)">4 GÜN • ZOR</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pro-panel" id="progPanel-builder">
+          <div id="customProgramsList"></div>
+          <div class="builder-hint">
+            <strong style="color: var(--accent)">Nasıl çalışır?</strong> Gün ekle → güne dokun (mavi çerçeve) → aşağıdaki listeden
+            <strong>+</strong> ile hareket ekle. Kaydettiğinde Antrenman sekmesinde kullanırsın.
+          </div>
+          <form id="customProgramForm" class="card premium-card">
+            <div class="section-title" style="margin-bottom: 12px">Yeni program</div>
+            <input
+              class="pr-input"
+              id="customProgramName"
+              placeholder="Program adı (ör. 4 Günlük PPL)"
+              style="width: 100%; margin-bottom: 10px"
+              required
+            />
+            <label style="font-size: 11px; color: var(--text3); display: block; margin-bottom: 6px">Set arası dinlenme</label>
+            <select class="pr-input" id="customRestSeconds" style="width: 100%; margin-bottom: 14px">
+              <option value="60">60 sn</option>
+              <option value="90" selected>90 sn</option>
+              <option value="120">2 dk</option>
+              <option value="180">3 dk</option>
+            </select>
+            <div id="customDayList"></div>
+            <button type="button" class="day-chip" id="customAddDayBtn" style="width: 100%; margin: 10px 0 14px">+ Gün ekle</button>
+            <button type="submit" class="start-btn" style="margin: 0">PROGRAMI KAYDET VE KULLAN</button>
+          </form>
+          <div class="section-title" style="margin-top: 20px; margin-bottom: 10px">Hızlı ekle — seçili güne</div>
+          <input
+            class="pr-input"
+            id="exerciseSearchBuilder"
+            placeholder="Hareket ara..."
+            style="width: 100%; margin-bottom: 10px"
+          />
+          <div class="day-selector" id="exerciseRegionChips" style="margin-bottom: 10px"></div>
+          <div id="exerciseLibraryList" class="exercise-library-list exercise-library-list--builder"></div>
+        </div>
+
+        <div class="pro-panel" id="progPanel-library">
+          <div class="library-hero">
+            <div>
+              <div class="library-hero-val" id="libraryTotalCount">—</div>
+              <div class="library-hero-lbl">Hareket · 15 kas grubu</div>
+            </div>
+            <div style="text-align: right; font-size: 12px; color: var(--text2)">
+              Dokun: detay<br />
+              <span style="color: var(--accent)">+</span> Oluştur sekmesinde güne ekle
+            </div>
+          </div>
+          <input class="pr-input" id="exerciseSearch" placeholder="Hareket ara (ör. bench, squat)..." style="width: 100%; margin-bottom: 12px" />
+          <div class="day-selector" id="exerciseRegionChipsFull" style="margin-bottom: 12px"></div>
+          <div id="exerciseLibraryListFull" class="exercise-library-list"></div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-programdetail">
+        <div id="programDetailContent"></div>
+      </section>
+
+      <section class="screen" id="screen-progress">
+        <div class="pro-screen-title">İLERLEME</div>
+        <p class="pro-screen-sub">PR kayıtları, grafikler ve antrenman geçmişi.</p>
+
+        <div class="progress-grid">
+          <div class="prog-card"><div class="prog-card-icon">🏋️</div><div class="prog-card-val" id="progBench">60</div><div class="prog-card-label">Bench</div></div>
+          <div class="prog-card"><div class="prog-card-icon">🦵</div><div class="prog-card-val" id="progSquat">120</div><div class="prog-card-label">Squat</div></div>
+          <div class="prog-card"><div class="prog-card-icon">🤸</div><div class="prog-card-val" id="progPushup">50</div><div class="prog-card-label">Şınav</div></div>
+          <div class="prog-card"><div class="prog-card-icon">⚖️</div><div class="prog-card-val" id="progWeight">84</div><div class="prog-card-label">Kilo</div></div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">FitTracker Grafik</div>
+          <div class="chart-tabs" id="chartTabs">
+            <button type="button" class="chart-tab active" data-chart="volume">Hacim</button>
+            <button type="button" class="chart-tab" data-chart="workouts">Antrenman</button>
+            <button type="button" class="chart-tab" data-chart="pr">Bench PR</button>
+          </div>
+          <canvas id="mexMainChart" height="140" style="width: 100%; margin-top: 8px"></canvas>
+          <div id="mexChartSummary"></div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">Antrenman Geçmişi</div>
+          <div class="week-log" id="weekLog"></div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">PR Güncelle</div>
+          <div class="pr-input-card">
+            <div class="pr-exercise-name">Bench <span class="pr-current" id="prBenchCurrent"></span></div>
+            <div class="pr-input-row">
+              <input class="pr-input" id="prBenchInput" type="number" placeholder="kg" />
+              <button type="button" class="pr-save-btn">Kaydet</button>
+            </div>
+          </div>
+          <div class="pr-input-card">
+            <div class="pr-exercise-name">Squat <span class="pr-current" id="prSquatCurrent"></span></div>
+            <div class="pr-input-row">
+              <input class="pr-input" id="prSquatInput" type="number" placeholder="kg" />
+              <button type="button" class="pr-save-btn">Kaydet</button>
+            </div>
+          </div>
+          <div class="pr-input-card">
+            <div class="pr-exercise-name">Şınav <span class="pr-current" id="prPushupCurrent"></span></div>
+            <div class="pr-input-row">
+              <input class="pr-input" id="prPushupInput" type="number" placeholder="adet" />
+              <button type="button" class="pr-save-btn">Kaydet</button>
+            </div>
+          </div>
+          <div class="pr-input-card">
+            <div class="pr-exercise-name">Vücut ağırlığı <span class="pr-current" id="prWeightCurrent"></span></div>
+            <div class="pr-input-row">
+              <input class="pr-input" id="prWeightInput" type="number" placeholder="kg" />
+              <button type="button" class="pr-save-btn">Kaydet</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="screen" id="screen-more">
+        <div class="pro-screen-title">DAHA FAZLA</div>
+        <p class="pro-screen-sub">Beslenme, sağlık, planlama ve araçlar.</p>
+        <div class="more-menu-grid">
+          <div class="card more-menu-card" data-nav="bodyphotos"><span class="more-menu-icon">📸</span><span class="more-menu-label">Vücut Fotoğrafı</span></div>
+          <div class="card more-menu-card" data-nav="calories"><span class="more-menu-icon">🔥</span><span class="more-menu-label">Kalori Yakma</span></div>
+          <div class="card more-menu-card" data-nav="badges"><span class="more-menu-icon">🏅</span><span class="more-menu-label">Rozetler</span></div>
+          <div class="card more-menu-card" data-nav="shopping"><span class="more-menu-icon">🛒</span><span class="more-menu-label">Alışveriş</span></div>
+          <div class="card more-menu-card" data-nav="water"><span class="more-menu-icon">💧</span><span class="more-menu-label">Su Takibi</span></div>
+          <div class="card more-menu-card" data-nav="sleep"><span class="more-menu-icon">😴</span><span class="more-menu-label">Uyku & Stres</span></div>
+          <div class="card more-menu-card" data-nav="measurements"><span class="more-menu-icon">📏</span><span class="more-menu-label">Ölçümler</span></div>
+          <div class="card more-menu-card" data-nav="stats"><span class="more-menu-icon">📊</span><span class="more-menu-label">İstatistik</span></div>
+          <div class="card more-menu-card" data-nav="shift"><span class="more-menu-icon">🕒</span><span class="more-menu-label">Vardiya Modu</span></div>
+          <div class="card more-menu-card" data-nav="anatomy"><span class="more-menu-icon">🧠</span><span class="more-menu-label">Anatomi</span></div>
+          <div class="card more-menu-card" data-nav="warmup"><span class="more-menu-icon">🔥</span><span class="more-menu-label">Isınma</span></div>
+          <div class="card more-menu-card" data-nav="bmi"><span class="more-menu-icon">⚖️</span><span class="more-menu-label">BMI</span></div>
+          <div class="card more-menu-card" data-nav="weeklyreport"><span class="more-menu-icon">📅</span><span class="more-menu-label">Haftalık Rapor</span></div>
+          <div class="card more-menu-card" data-nav="development"><span class="more-menu-icon">📈</span><span class="more-menu-label">Gelişim</span></div>
+          <div class="card more-menu-card" data-nav="tips"><span class="more-menu-icon">💡</span><span class="more-menu-label">İpuçları</span></div>
+          <div class="card more-menu-card" data-nav="templates"><span class="more-menu-icon">📋</span><span class="more-menu-label">Şablonlar</span></div>
+          <div class="card more-menu-card" data-nav="nutrition" data-mex-nav="nutrition"><span class="more-menu-icon">🥗</span><span class="more-menu-label">Beslenme Pro</span></div>
+          <div class="card more-menu-card" data-nav="profile" data-mex-nav="profile"><span class="more-menu-icon">👤</span><span class="more-menu-label">Profil</span></div>
+        </div>
+      </section>
+
+      <!-- Sub-screens used by app.js -->
+      <section class="screen" id="screen-water">
+        <div class="pro-screen-title">SU TAKİBİ</div>
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px">
+            <div>Bugün</div>
+            <div><span id="waterDisplay">0</span> ml</div>
+          </div>
+          <div class="protein-bar" style="height: 10px">
+            <div class="protein-bar-fill" id="waterBar" style="width: 0%"></div>
+          </div>
+          <div style="margin-top: 10px; font-size: 12px; color: var(--text2)" id="waterStatus"></div>
+        </div>
+        <div class="card" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px">
+          <button type="button" class="day-chip">200ml</button>
+          <button type="button" class="day-chip">330ml</button>
+          <button type="button" class="day-chip">500ml</button>
+          <button type="button" class="day-chip">1000ml</button>
+          <button type="button" class="day-chip" style="grid-column: 1 / -1">SIFIRLA</button>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-bmi">
+        <div class="pro-screen-title">BMI</div>
+        <div class="card">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px">
+            <input class="pr-input" id="bmiHeight" type="number" placeholder="Boy (cm)" />
+            <input class="pr-input" id="bmiWeight" type="number" placeholder="Kilo (kg)" />
+          </div>
+          <input class="pr-input" id="bmiAge" type="number" placeholder="Yaş" style="width: 100%; margin-bottom: 10px" />
+          <button type="button" class="start-btn" style="margin: 0">HESAPLA</button>
+        </div>
+        <div id="bmiResult"></div>
+      </section>
+
+      <section class="screen" id="screen-calories">
+        <div class="pro-screen-title">KALORİ YAKMA</div>
+        <div class="card">
+          <select class="pr-input" id="calorieActivityType" style="width: 100%; margin-bottom: 8px">
+            <option value="200">Yürüyüş (30dk)</option>
+            <option value="350">Koşu (30dk)</option>
+            <option value="custom">Özel</option>
+          </select>
+          <div id="customCalInput" style="display: none; margin-bottom: 8px">
+            <input class="pr-input" id="customCal" type="number" placeholder="Kalori" style="width: 100%" />
+          </div>
+          <button type="button" class="start-btn" style="margin: 0">EKLE</button>
+        </div>
+        <div class="card">
+          <div class="section-title">Toplam</div>
+          <div style="font-family: var(--font); font-size: 40px; color: var(--accent2)">
+            <span id="totalBurn">0</span> kal
+          </div>
+          <div id="calorieActivityList"></div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-sleep">
+        <div class="section-title">Uyku</div>
+        <div class="card">
+          <input class="pr-input" id="sleepHours" type="number" placeholder="Saat" style="width: 100%; margin-bottom: 8px" />
+          <select class="pr-input" id="sleepQuality" style="width: 100%; margin-bottom: 10px">
+            <option value="iyi">İyi</option>
+            <option value="orta">Orta</option>
+            <option value="kotu">Kötü</option>
+          </select>
+          <div style="display: flex; gap: 8px; margin-bottom: 10px">
+            <button type="button" class="day-chip stress-btn active"><div>Düşük</div></button>
+            <button type="button" class="day-chip stress-btn"><div>Orta</div></button>
+            <button type="button" class="day-chip stress-btn"><div>Yüksek</div></button>
+          </div>
+          <button type="button" class="start-btn" style="margin: 0">KAYDET</button>
+        </div>
+        <div class="card"><div class="section-title">Geçmiş</div><div id="sleepHistory"></div></div>
+      </section>
+
+      <section class="screen" id="screen-measurements">
+        <div class="pro-screen-title">ÖLÇÜMLER</div>
+        <div class="card">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px">
+            <input class="pr-input" id="mChest" type="number" placeholder="Göğüs (cm)" />
+            <input class="pr-input" id="mShoulder" type="number" placeholder="Omuz (cm)" />
+            <input class="pr-input" id="mArm" type="number" placeholder="Kol (cm)" />
+            <input class="pr-input" id="mWaist" type="number" placeholder="Bel (cm)" />
+            <input class="pr-input" id="mThigh" type="number" placeholder="Uyluk (cm)" />
+            <input class="pr-input" id="mFat" type="number" placeholder="Yağ (%)" />
+          </div>
+          <button type="button" class="start-btn" style="margin: 0">KAYDET</button>
+        </div>
+        <div class="card"><div class="section-title">Geçmiş</div><div id="measurementHistory"></div></div>
+      </section>
+
+      <section class="screen" id="screen-bodyphotos">
+        <div class="pro-screen-title">VÜCUT FOTOĞRAFI</div>
+        <div class="card">
+          <input type="file" id="bodyPhoto" accept="image/*" style="width: 100%; color: var(--text2); margin-bottom: 10px" />
+          <div id="bodyPhotoPreview" style="display: none; margin-bottom: 10px">
+            <img id="bodyPhotoImg" style="width: 100%; border-radius: 12px; max-height: 220px; object-fit: cover" />
+          </div>
+          <input class="pr-input" id="bodyPhotoNote" placeholder="Not (opsiyonel)" style="width: 100%; margin-bottom: 8px" />
+          <input class="pr-input" id="bodyPhotoWeight" type="number" placeholder="Kilo (opsiyonel)" style="width: 100%; margin-bottom: 10px" />
+          <button type="button" class="start-btn" style="margin: 0">KAYDET</button>
+        </div>
+        <div id="bodyPhotoList"></div>
+      </section>
+
+      <section class="screen" id="screen-shift">
+        <div class="section-title">Vardiya</div>
+        <div class="card">
+          <select class="pr-input" id="shiftType" style="width: 100%; margin-bottom: 8px">
+            <option value="gunduz">Gündüz</option>
+            <option value="gece">Gece</option>
+            <option value="sabah">Sabah</option>
+            <option value="ogle">Öğleden sonra</option>
+            <option value="tatil">Tatil</option>
+          </select>
+          <select class="pr-input" id="shiftEnergy" style="width: 100%">
+            <option value="iyi">İyi</option>
+            <option value="orta">Orta</option>
+            <option value="yorgun">Yorgun</option>
+          </select>
+        </div>
+        <div id="shiftPlanContent"></div>
+      </section>
+
+      <section class="screen" id="screen-anatomy">
+        <div class="pro-screen-title">ANATOMİ</div>
+        <div class="day-selector" style="margin-bottom: 12px">
+          <button type="button" class="day-chip active">Ön</button>
+          <button type="button" class="day-chip">Arka</button>
+        </div>
+        <div id="anatomyMap"></div>
+      </section>
+
+      <section class="screen" id="screen-weeklyreport">
+        <div class="pro-screen-title">HAFTALIK RAPOR</div>
+        <div id="weeklyReportContent"></div>
+      </section>
+
+      <section class="screen" id="screen-development">
+        <div class="pro-screen-title">GELİŞİM</div>
+        <div id="developmentContent"></div>
+      </section>
+
+      <section class="screen" id="screen-shopping">
+        <div class="pro-screen-title">ALIŞVERİŞ</div>
+        <p class="pro-screen-sub">Haftalık market listesi — işaretle.</p>
+        <div id="shoppingContent"></div>
+      </section>
+
+      <section class="screen" id="screen-stats">
+        <div class="pro-screen-title">İSTATİSTİK</div>
+        <p class="pro-screen-sub">Hacim, PR geçmişi ve set kayıtları.</p>
+        <div id="statsContent"></div>
+      </section>
+
+      <section class="screen" id="screen-templates">
+        <div class="pro-screen-title">ŞABLONLAR</div>
+        <p class="pro-screen-sub">Hızlı antrenman şablonları — Program → Oluştur ile özelleştir.</p>
+        <div id="templatesContent"></div>
+      </section>
+
+      <section class="screen" id="screen-tips">
+        <div class="pro-screen-title">İPUÇLARI</div>
+        <div id="tipsContent"></div>
+      </section>
+
+      <section class="screen" id="screen-badges">
+        <div class="pro-screen-title">ROZETLER</div>
+        <p class="pro-screen-sub">Hedefleri tamamlayarak rozet kazan.</p>
+        <div id="badgesContent"></div>
+      </section>
+
+      <section class="screen" id="screen-warmup">
+        <div class="pro-screen-title">ISINMA</div>
+        <p class="pro-screen-sub">Antrenman öncesi 8–10 dakika mobilite.</p>
+        <div id="warmupContent"></div>
+      </section>
+    </main>
+
+    <!-- Bottom nav -->
+    <nav class="nav">
+      <button class="nav-btn active" type="button" aria-label="Ana">
+        <svg class="nav-svg" viewBox="0 0 24 24"><path d="M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5z"/></svg>
+        <span>Ana</span>
+      </button>
+      <button class="nav-btn" type="button" aria-label="Antrenman">
+        <svg class="nav-svg" viewBox="0 0 24 24"><path d="M6 7v10M18 7v10M6 7h2.5a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6M18 7h-2.5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2H18"/></svg>
+        <span>Antrenman</span>
+      </button>
+      <button class="nav-btn" type="button" aria-label="Program">
+        <svg class="nav-svg" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+        <span>Program</span>
+      </button>
+      <button class="nav-btn" type="button" aria-label="İlerleme">
+        <svg class="nav-svg" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 17V11M12 17V7M16 17v-4"/></svg>
+        <span>İlerleme</span>
+      </button>
+      <button class="nav-btn" type="button" aria-label="Daha fazla">
+        <svg class="nav-svg" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="18" cy="12" r="1.5"/></svg>
+        <span>Daha</span>
+      </button>
+    </nav>
+
+    <!-- Toasts -->
+    <div class="toast" id="toast"></div>
+    <div class="toast" id="offlineToast" style="display: none; background: var(--red)">Offline</div>
+    <div class="toast" id="onlineToast" style="display: none">Online</div>
+
+    <!-- Rest countdown bar -->
+    <div class="rest-countdown-bar" id="restCountdownBar">
+      <div class="rest-countdown-fill" id="restCountdownFill"></div>
+      <div id="restCountdownLabel">Dinlenme</div>
+      <button type="button" class="rest-skip-btn" id="restSkipBtn">Geç</button>
+    </div>
+
+    <!-- Timer overlay -->
+    <div class="timer-overlay" id="timerOverlay">
+      <div class="timer-time" id="timerDisplay">90</div>
+      <button class="timer-btn">−15</button>
+      <button class="timer-btn">+15</button>
+      <button class="timer-btn">60sn</button>
+      <button class="timer-btn">90sn</button>
+      <button class="timer-btn">2dk</button>
+      <button class="timer-btn">3dk</button>
+      <button class="timer-btn">↺</button>
+      <button type="button" class="timer-btn" id="timerPauseBtn">⏸</button>
+      <button type="button" class="timer-close">✕</button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="mex-pro-screens.js"></script>
+    <script src="app.js"></script>
+    <script src="data/exercises-bundle.js"></script>
+    <script src="mex-auth.js"></script>
+    <script src="mex-exercise-details.js"></script>
+    <script src="mex-exercises.js"></script>
+    <script src="mex-features.js"></script>
+    <script src="mex-nutrition.js"></script>
+    <script src="mex-profile.js"></script>
+    <script src="mex-pwa.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      }
+    </script>
+  </body>
+</html>
