@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.mehdisvg.twa",
+      "sha256_cert_fingerprints": ["89:67:13:97:91:28:0A:FC:87:76:C1:DD:D2:2E:31:7B:A3:E4:B2:D2:3E:25:EC:2A:EE:C6:41:6B:6D:75:16:06"]
+    }
+  }
+]
