@@ -1,8 +1,8 @@
 {
-  "name": "MEX Pro",
+  "name": "MEX Pro - Fitness Tracker",
   "short_name": "MEX Pro",
-  "description": "Antrenman, beslenme ve ilerleme takibi",
-  "start_url": "/",
+  "description": "Profesyonel antrenman takibi, beslenme rehberi ve gelişim istatistikleri.",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0b0b0f",
   "theme_color": "#0b0b0f",
@@ -10,28 +10,54 @@
   "lang": "tr",
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%230d1b2e' width='192' height='192' rx='40'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-size='72' fill='%2347b8ff' font-family='sans-serif' font-weight='bold'%3EM%3C/text%3E%3C/svg%3E",
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Antrenman Takibi"
+    },
+    {
+      "src": "screenshot-2.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Gelişim İstatistikleri"
     }
   ],
   "shortcuts": [
     {
       "name": "Antrenman",
-      "url": "/?screen=workout",
-      "description": "Bugünkü antrenman"
+      "url": "./index.html?screen=workout",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Beslenme",
-      "url": "/?screen=nutrition",
-      "description": "Makro ve öğün"
-    },
-    {
-      "name": "Su",
-      "url": "/?screen=water",
-      "description": "Su takibi"
+      "url": "./index.html?screen=nutrition",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     }
   ],
-  "categories": ["health", "fitness"]
+  "categories": ["health", "fitness"],
+  "id": "com.mexpro.app",
+  "dir": "ltr",
+  "display_override": ["window-controls-overlay", "minimal-ui"]
 }
